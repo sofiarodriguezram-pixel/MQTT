@@ -20,26 +20,25 @@ page_style = """
     }
 
     [data-testid="stAppViewContainer"] {
-        background: linear-gradient(135deg, #e6f0ff, #f5f9ff, #eaf9f5);
+        background: linear-gradient(135deg, #eaf4ff, #f7faff, #f0f8ff);
         color: #333;
     }
 
     [data-testid="stSidebar"] {
-        background: linear-gradient(180deg, #d7e3ff, #f0f5ff);
+        background: linear-gradient(180deg, #d7e3ff, #eef3ff);
         color: #333;
     }
 
-    /* Título principal con sombra y degradado cálido */
+    /* Título principal con sombra visible y color firme */
     h1, .stMarkdown h1 {
         text-align: center;
         font-weight: 700 !important;
-        background: linear-gradient(90deg, #ff6ec7, #9b5de5, #4361ee);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        font-size: 2.4em !important;
-        padding: 0.3em 0;
+        color: #6a11cb; /* violeta */
+        font-size: 2.5em !important;
+        padding: 0.4em 0;
         display: block;
-        text-shadow: 2px 2px 10px rgba(100, 100, 255, 0.2);
+        text-shadow: 2px 2px 6px rgba(106, 17, 203, 0.3), 
+                     0 0 10px rgba(37, 117, 252, 0.2);
     }
 
     h2, h3, h4 {
