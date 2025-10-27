@@ -29,23 +29,26 @@ page_style = """
         color: #333;
     }
 
-    h1 {
+    /* Título principal visible */
+    h1, .stMarkdown h1 {
         text-align: center;
-        font-weight: 700;
+        font-weight: 700 !important;
         background: linear-gradient(90deg, #0077b6, #0096c7, #00b4d8);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        margin-bottom: 0.4em;
+        font-size: 2.2em !important;
+        padding: 0.3em 0;
+        display: block;
     }
 
     h2, h3, h4 {
-        color: #0077b6;
-        font-weight: 600;
+        color: #0077b6 !important;
+        font-weight: 600 !important;
     }
 
     .stButton > button {
         background: linear-gradient(90deg, #0096c7, #48cae4);
-        color: white;
+        color: white !important;
         border-radius: 10px;
         border: none;
         font-weight: 600;
@@ -80,9 +83,8 @@ st.markdown(page_style, unsafe_allow_html=True)
 if 'sensor_data' not in st.session_state:
     st.session_state.sensor_data = None
 
-# --- FUNCIÓN PRINCIPAL MQTT ---
+# --- FUNCIÓN MQTT ---
 def get_mqtt_message(broker, port, topic, client_id):
-    """Función para obtener un mensaje MQTT"""
     message_received = {"received": False, "payload": None}
     
     def on_message(client, userdata, message):
@@ -116,21 +118,13 @@ def get_mqtt_message(broker, port, topic, client_id):
 # --- SIDEBAR ---
 with st.sidebar:
     st.subheader('⚙️ Configuración de Conexión')
-    
-    broker = st.text_input('Broker MQTT', value='broker.mqttdashboard.com', 
-                           help='Dirección del broker MQTT')
-    
-    port = st.number_input('Puerto', value=1883, min_value=1, max_value=65535,
-                           help='Puerto del broker (generalmente 1883)')
-    
-    topic = st.text_input('Tópico', value='sensor_st',
-                          help='Tópico MQTT a suscribirse')
-    
-    client_id = st.text_input('ID del Cliente', value='streamlit_client',
-                              help='Identificador único para este cliente')
+    broker = st.text_input('Broker MQTT', value='broker.mqttdashboard.com')
+    port = st.number_input('Puerto', value=1883, min_value=1, max_value=65535)
+    topic = st.text_input('Tópico', value='sensor_st')
+    client_id = st.text_input('ID del Cliente', value='streamlit_client')
 
 # --- TÍTULO ---
-st.title('📡 Lector de Sensor MQTT')
+st.markdown("<h1>📡 Lector de Sensor MQTT</h1>", unsafe_allow_html=True)
 
 # --- INFORMACIÓN ---
 with st.expander('ℹ️ Información', expanded=False):
@@ -150,7 +144,7 @@ with st.expander('ℹ️ Información', expanded=False):
 
 st.divider()
 
-# --- BOTÓN PARA OBTENER DATOS ---
+# --- BOTÓN ---
 if st.button('🔄 Obtener Datos del Sensor', use_container_width=True):
     with st.spinner('Conectando al broker y esperando datos...'):
         sensor_data = get_mqtt_message(broker, int(port), topic, client_id)
