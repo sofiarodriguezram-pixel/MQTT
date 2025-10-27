@@ -29,16 +29,17 @@ page_style = """
         color: #333;
     }
 
-    /* Título principal visible */
+    /* Título principal con sombra y degradado cálido */
     h1, .stMarkdown h1 {
         text-align: center;
         font-weight: 700 !important;
-        background: linear-gradient(90deg, #0077b6, #0096c7, #00b4d8);
+        background: linear-gradient(90deg, #ff6ec7, #9b5de5, #4361ee);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        font-size: 2.2em !important;
+        font-size: 2.4em !important;
         padding: 0.3em 0;
         display: block;
+        text-shadow: 2px 2px 10px rgba(100, 100, 255, 0.2);
     }
 
     h2, h3, h4 {
